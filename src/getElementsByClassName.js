@@ -1,20 +1,23 @@
 var getElementsByClassName = function(className){
   var result = [];
   var children = document.body.childNodes
-	if(document.body.className === className){
-		result.push(document.body)
+    if(document.body.className === className){
+	  result.push(document.body)
 	}  
-  for (var i = 0; i < children.length; i++) {
-  	if(children[i].className === className){
+    for (var i = 0; i < children.length; i++) {
+	  if (children[i].classList !== undefined) {
+	    for (var j = 0; j < children[i].classList.length; j++) {
+  		  if(children[i].classList[j] === className){
+		    result.push(children[i])
+  		  }
+		}
+	  };
+	};
+  return result;
+};
 
-  		result.push(children[i])
-  	}
-  };
+//You should use document.body, element.childNodes, and element.classList
 
-
-
-	console.log(result);
-return result;
 //  if(hasChildNodes() === true){
 	//check to see if those children have the specified class... aka use recursion
 //}
@@ -30,8 +33,6 @@ return result;
 
 //1. chck for body classname
 //2. inner function that takes in a element or node
-
-};
 
 //how do i target the DOM node itself in order to check if it has a class?
 // what DOM nodes am i checking?
